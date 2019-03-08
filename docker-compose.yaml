@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7.16
+    environment:
+      COMPOSE_HTTP_TIMEOUT: 3600
+      MYSQL_DATABASE: 'clean_arch'
+      MYSQL_USER: 'clean_arch'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+      TZ: Japan
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    ports:
+      - '3306:3306'
+    volumes:
+      - db-data:/var/lib/mysql
+
+  backend:
+    build: .
+    environment:
+      COMPOSE_HTTP_TIMEOUT: 3600
+      TZ: Asia/Tokyo
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./backend:/go/src/clean_arch_api/backend
+    links:
+      - 'mysql:db'
+    restart: always
+
+volumes:
+  db-data:
+    driver: local

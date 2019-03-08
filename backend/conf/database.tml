@@ -1,0 +1,9 @@
+[Database]
+driver    = "mysql"
+server    = "tcp(db:3306)"
+user      = "clean_arch"
+password  = "root"
+database  = "clean_arch"
+charset   = "utf8mb4"
+parseTime = "true"
+timeZone  = "Japan"
