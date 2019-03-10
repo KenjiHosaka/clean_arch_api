@@ -19,6 +19,13 @@ func NewTaskHandler(u registory.Usecase) TaskHandler {
 	return TaskHandler{u.NewTaskUsecase()}
 }
 
+// NewTask godoc
+// @Summary タスク作成
+// @Produce  json
+// @Param body body request.NewTaskRequest true "作成データ"
+// @Router /tasks [post]
+// @Success 200 {object} res.TaskEntity
+// @Failure 500 {object} res.APIError
 func (th TaskHandler) NewTask(c echo.Context) error {
 
 	body := request.NewTaskRequest{}
@@ -39,6 +46,13 @@ func (th TaskHandler) NewTask(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.SuccessResult(entity))
 }
 
+// NewTask godoc
+// @Summary タスク取得
+// @Produce  json
+// @Param taskId path int true "Task ID"
+// @Router /tasks/{taskId} [get]
+// @Success 200 {object} res.TaskEntity
+// @Failure 500 {object} res.APIError
 func (th TaskHandler) GetTask(c echo.Context) error {
 
 	taskId, e:= util.GetUintParam(c, "taskId")

@@ -1,0 +1,108 @@
+basePath: '{{.BasePath}}'
+definitions:
+  entity.TaskEntity:
+    properties:
+      contents:
+        type: string
+      status:
+        type: integer
+      statusLabel:
+        type: string
+      taskId:
+        type: integer
+      title:
+        type: string
+    type: object
+  request.NewTaskRequest:
+    properties:
+      contents:
+        example: New Contents
+        type: string
+      title:
+        example: New Title
+        type: string
+    type: object
+  res.APIError:
+    properties:
+      payload:
+        $ref: '#/definitions/res.errorMessage'
+        type: object
+      status:
+        example: error
+        type: string
+    type: object
+  res.TaskEntity:
+    properties:
+      payload:
+        $ref: '#/definitions/entity.TaskEntity'
+        type: object
+      status:
+        example: success
+        type: string
+    type: object
+  res.errorMessage:
+    properties:
+      message:
+        example: internal server error
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: sample API List
+  version: "1.0"
+paths:
+  /tasks:
+    post:
+      parameters:
+      - description: 作成データ
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/request.NewTaskRequest'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/res.TaskEntity'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/res.APIError'
+            type: object
+      summary: タスク作成
+  /tasks/{taskId}:
+    get:
+      parameters:
+      - description: Task ID
+        in: path
+        name: taskId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/res.TaskEntity'
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/res.APIError'
+            type: object
+      summary: タスク取得
+securityDefinitions:
+  ApiKeyAuth:
+    in: Headers
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

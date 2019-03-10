@@ -12,12 +12,10 @@ import (
 	"time"
 )
 
-// @title sample API List
+// @title Sample API List
 // @version 1.0
 
 // @host localhost:8000
-// @BasePath /v1
-
 // @securityDefinitions.apikey ApiKeyAuth
 // @in Headers
 // @name Authorization
