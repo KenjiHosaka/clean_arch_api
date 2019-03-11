@@ -7,5 +7,5 @@ import (
 )
 
 func WelcomeMessage(c echo.Context) error {
-	return c.JSON(http.StatusOK, response.SuccessResult("Welcome to chillwork !!"))
+	return c.JSON(http.StatusOK, response.SuccessResult("Welcome to sample !!"))
 }
