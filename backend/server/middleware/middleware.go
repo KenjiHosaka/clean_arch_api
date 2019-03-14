@@ -3,7 +3,7 @@ package middleware
 import (
 	"clean_arch_api/backend/fork/golang/sync/singleflight"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 func SetRequestBagToContext(requestBag *singleflight.Group) echo.MiddlewareFunc {

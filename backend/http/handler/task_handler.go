@@ -6,7 +6,7 @@ import (
 	"clean_arch_api/backend/http/handler/response"
 	"clean_arch_api/backend/registory"
 	"clean_arch_api/backend/util"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 	"net/http"
 )

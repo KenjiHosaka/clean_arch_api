@@ -6,9 +6,10 @@ import (
 	"clean_arch_api/backend/fork/golang/sync/singleflight"
 	mw "clean_arch_api/backend/server/middleware"
 	"clean_arch_api/backend/server/router"
+
 	"github.com/jinzhu/gorm"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func SetUp(db *gorm.DB, requestBag *singleflight.Group) *echo.Echo {

@@ -8,7 +8,8 @@ package singleflight
 
 import (
 	"sync"
-	"github.com/labstack/echo"
+
+	"github.com/labstack/echo/v4"
 )
 
 // call is an in-flight or completed singleflight.Do call

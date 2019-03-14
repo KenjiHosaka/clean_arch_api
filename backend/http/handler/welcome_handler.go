@@ -2,7 +2,7 @@ package handler
 
 import (
 	"clean_arch_api/backend/http/handler/response"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"net/http"
 )
 

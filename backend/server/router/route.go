@@ -4,12 +4,12 @@ import (
 	_ "clean_arch_api/backend/docs"
 	"clean_arch_api/backend/http/handler"
 	"clean_arch_api/backend/registory"
+	"github.com/labstack/echo/v4"
+
 	"github.com/jinzhu/gorm"
-	"github.com/labstack/echo"
-	"github.com/swaggo/echo-swagger"
 )
 
-func Routing(r *echo.Echo, database * gorm.DB) {
+func Routing(r *echo.Echo, database *gorm.DB) {
 	// rootAPIを用意
 	r.GET("/", handler.WelcomeMessage)
 
@@ -21,5 +21,5 @@ func Routing(r *echo.Echo, database * gorm.DB) {
 	taskRoute.GET("/:taskId", taskHandler.GetTask)
 
 	// swagger
-	r.GET("/swagger/*", echoSwagger.WrapHandler)
+	//r.GET("/swagger/*", echoSwagger.WrapHandler)
 }
