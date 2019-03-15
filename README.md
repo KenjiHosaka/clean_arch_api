@@ -2,15 +2,6 @@
 
 ## 環境構築
 
-### 初回
-```bash
-$ cd clean_arch_api
-$ docker-compose build
-$ docker-compose run --rm backend dep ensure
-$ docker-compose up
-```
-
-### 2回目以降
 ```bash
 $ cd clean_arch_api
 $ docker-compose up
