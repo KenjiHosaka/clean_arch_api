@@ -1,15 +1,16 @@
 package thread
 
 import (
-	"context"
 	"clean_arch_api/backend/util/errors"
+	"context"
 	"time"
 )
 
 const (
 	defaultChanelTask = 5
-	DefaultTimeOut = 10 * time.Second
+	DefaultTimeOut    = 10 * time.Second
 )
+
 type AsyncFunc func(ctx context.Context) errors.Error
 
 func RunTask(f func() errors.Error) AsyncFunc {
@@ -34,7 +35,7 @@ func RunTask(f func() errors.Error) AsyncFunc {
 
 /*
 平行に処理を行う
- */
+*/
 func RunParallel(funcs ...AsyncFunc) AsyncFunc {
 	return func(ctx context.Context) errors.Error {
 		childCtx, cancelAll := context.WithCancel(ctx)
@@ -87,7 +88,7 @@ func RunParallel(funcs ...AsyncFunc) AsyncFunc {
 
 /*
 直列に処理を行う
- */
+*/
 func RunSerial(fs ...AsyncFunc) AsyncFunc {
 	return func(ctx context.Context) errors.Error {
 		for _, f := range fs {

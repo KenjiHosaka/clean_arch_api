@@ -3,7 +3,6 @@ package main
 import (
 	"clean_arch_api/backend/db"
 	"clean_arch_api/backend/environment"
-	"clean_arch_api/backend/fork/golang/sync/singleflight"
 	"clean_arch_api/backend/server"
 	"context"
 	"log"
@@ -29,8 +28,7 @@ func main() {
 
 	defer database.Close()
 
-	requestBag := new(singleflight.Group)
-	s := server.SetUp(database, requestBag)
+	s := server.SetUp(database)
 
 	go func() {
 		if err := s.Start(":" + environment.Port()); err != nil {
@@ -42,7 +40,7 @@ func main() {
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	ctx, cancel := context.WithTimeout(context.Background(), 30 * time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	if err := s.Shutdown(ctx); err != nil {
 		s.Logger.Fatal(err)

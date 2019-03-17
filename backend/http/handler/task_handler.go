@@ -6,7 +6,7 @@ import (
 	"clean_arch_api/backend/http/handler/response"
 	"clean_arch_api/backend/registory"
 	"clean_arch_api/backend/util"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 	"net/http"
 )
@@ -46,7 +46,7 @@ func (th TaskHandler) NewTask(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.SuccessResult(entity))
 }
 
-// NewTask godoc
+// GetTask godoc
 // @Summary タスク取得
 // @Produce  json
 // @Param taskId path int true "Task ID"
@@ -55,7 +55,7 @@ func (th TaskHandler) NewTask(c echo.Context) error {
 // @Failure 500 {object} res.APIError
 func (th TaskHandler) GetTask(c echo.Context) error {
 
-	taskId, e:= util.GetUintParam(c, "taskId")
+	taskId, e := util.GetUintParam(c, "taskId")
 
 	if e != nil {
 		log.Error(e.Error())

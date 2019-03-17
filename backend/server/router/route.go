@@ -5,11 +5,11 @@ import (
 	"clean_arch_api/backend/http/handler"
 	"clean_arch_api/backend/registory"
 	"github.com/jinzhu/gorm"
-	"github.com/labstack/echo"
-	"github.com/swaggo/echo-swagger"
+	"github.com/labstack/echo/v4"
+	"github.com/swaggo/echo-swagger/v2"
 )
 
-func Routing(r *echo.Echo, database * gorm.DB) {
+func Routing(r *echo.Echo, database *gorm.DB) {
 	// rootAPIを用意
 	r.GET("/", handler.WelcomeMessage)
 

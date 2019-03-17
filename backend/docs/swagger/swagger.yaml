@@ -51,7 +51,7 @@ info:
   contact: {}
   description: '{{.Description}}'
   license: {}
-  title: sample API List
+  title: Sample API List
   version: "1.0"
 paths:
   /tasks:
